@@ -57,6 +57,12 @@
                 " tám trăm mười ba nghìn"
                 " một trăm chín mươi tư")))))
 
+(deftest group-of-two->word-tests
+  (testing "testing numbers with two digits"
+    (is (= (group-of-two->word \4 \7)
+           "bốn mươi bảy"))
+    (is (= (group-of-two->word \2 \0)
+           "hai mươi"))))
 (deftest group-of-three->word-tests
   (testing "testing numbers with less than three digits"
     (is (= (group-of-three->word [\3 \4 \7])
