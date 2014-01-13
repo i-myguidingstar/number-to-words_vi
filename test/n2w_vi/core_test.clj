@@ -45,7 +45,7 @@
     (is (= (number->word-helper
             (map #(first (str %))
                  (concat (cons 9 (repeat 8 0)) '(4))))
-           (str "chín tỷ không trăm triệu không trăm nghìn"
+           (str "chín tỷ không triệu không nghìn"
                 " không trăm linh bốn")))
 
     (is (= (number->word-helper
@@ -79,7 +79,7 @@
 
   (testing "testing child-group numbers with less than two digits"
     (is (= (group-of-three->word \0 \0 \0)
-           "không trăm"))
+           "không"))
     (is (= (group-of-three->word \0 \0 \6)
            "không trăm linh sáu"))
     (is (= (group-of-three->word \0 \4 \7)

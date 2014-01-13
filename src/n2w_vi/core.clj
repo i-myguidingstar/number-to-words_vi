@@ -28,7 +28,7 @@
 (defn group-of-three->word [x y z]
   (str
    (digit->word x)
-   " trăm"
+   (when-not (= \0 x y z) " trăm")
    (cond
     (= \0 y z)
     ""
