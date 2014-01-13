@@ -6,13 +6,12 @@
 
 (def ^:dynamic *child-group?* false)
 
-(defn group-of-two->word [[y z]]
+(defn group-of-two->word [y z]
   (cond
-   (and (= \1 y) (= \0 z))
-   "mười"
-
    (= \1 y)
-   (str "mười " (digit->word z))
+   (str "mười"
+        (when-not (= \0 z)
+          (str " " (digit->word z))))
 
    :default
    (str (digit->word y) " mươi"
