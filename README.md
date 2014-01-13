@@ -2,6 +2,10 @@
 
 A Clojure library for number to Vietnamese word conversion.
 
+## Installation
+
+![Latest version](https://clojars.org/n2w-vi/latest-version.svg)
+
 ## Usage
 
 ```clojure
