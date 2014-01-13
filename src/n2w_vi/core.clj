@@ -4,8 +4,6 @@
   (zipmap (map #(first (str %)) (range 10))
           (map str '(không một hai ba bốn năm sáu bảy tám chín))))
 
-(def ^:dynamic *child-group?* false)
-
 (defn group-of-two->word [y z]
   (cond
    (= \1 y)
@@ -27,24 +25,19 @@
                 :default
                 (digit->word z)))))))
 
-(defn group-of-three->word [[x y z]]
-  (cond
-   (and (= \0 x y z))
-   (when *child-group?*
-     "không trăm")
+(defn group-of-three->word [x y z]
+  (str
+   (digit->word x)
+   " trăm"
+   (cond
+    (= \0 y z)
+    ""
 
-   (= \0 y z)
-   (str (digit->word x) " trăm")
+    (= \0 y)
+    (str " linh " (digit->word z))
 
-   (= \0 y)
-   (str (when-not (and (= \0 x) (not *child-group?*))
-          (str (digit->word x) " trăm linh "))
-        (digit->word z))
-
-   :default
-   (str (when-not (and (= \0 x) (not *child-group?*))
-          (str (digit->word x) " trăm "))
-        (group-of-two->word [y z]))))
+    :default
+    (str " " (group-of-two->word y z)))))
 
 (declare number->word-helper)
 
@@ -66,8 +59,7 @@
          (if (apply = (cons \0 tail))
            (when (< 0 repeated)
              (apply str " " (interpose " " (repeat repeated paster))))
-           (binding [*child-group?* true]
-             (str " " (number->word-helper tail)))))))
+           (str " " (number->word-helper tail))))))
 
 (defn number->word-helper [digits]
   (let [n-of-digits (count digits)]
@@ -82,10 +74,10 @@
      (link-groups digits 3 "nghìn")
 
      (= 3 n-of-digits)
-     (group-of-three->word digits)
+     (apply group-of-three->word digits)
 
      (= 2 n-of-digits)
-     (group-of-two->word digits)
+     (apply group-of-two->word digits)
 
      (= 1 n-of-digits)
-     (digit->word (first digits)))))
+     (apply digit->word digits))))
