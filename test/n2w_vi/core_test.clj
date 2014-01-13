@@ -63,36 +63,26 @@
            "bốn mươi bảy"))
     (is (= (group-of-two->word \2 \0)
            "hai mươi"))))
+
 (deftest group-of-three->word-tests
-  (testing "testing numbers with less than three digits"
-    (is (= (group-of-three->word [\3 \4 \7])
+  (testing "testing numbers with three digits"
+    (is (= (group-of-three->word \3 \4 \7)
            "ba trăm bốn mươi bảy"))
-    (is (= (group-of-three->word [\3 \1 \7])
+    (is (= (group-of-three->word \3 \1 \7)
            "ba trăm mười bảy"))
-    (is (= (group-of-three->word [\3 \0 \0])
+    (is (= (group-of-three->word \3 \0 \0)
            "ba trăm"))
-    (is (= (group-of-three->word [\3 \0 \7])
+    (is (= (group-of-three->word \3 \0 \7)
            "ba trăm linh bảy"))
-    (is (= (group-of-three->word [\3 \1 \0])
+    (is (= (group-of-three->word \3 \1 \0)
            "ba trăm mười")))
 
-  (testing "testing numbers with less than two digits"
-    (is (= (group-of-three->word [\0 \0 \0])
-           nil))
-    (is (= (group-of-three->word [\0 \0 \6])
-           "sáu"))
-    (is (= (group-of-three->word [\0 \4 \7])
-           "bốn mươi bảy"))
-    (is (= (group-of-three->word [\0 \2 \0])
-           "hai mươi")))
-
-  (binding [*child-group?* true]
-    (testing "testing child-group numbers with less than two digits"
-      (is (= (group-of-three->word [\0 \0 \0])
-             "không trăm"))
-      (is (= (group-of-three->word [\0 \0 \6])
-             "không trăm linh sáu"))
-      (is (= (group-of-three->word [\0 \4 \7])
-             "không trăm bốn mươi bảy"))
-      (is (= (group-of-three->word [\0 \2 \0])
-             "không trăm hai mươi")))))
+  (testing "testing child-group numbers with less than two digits"
+    (is (= (group-of-three->word \0 \0 \0)
+           "không trăm"))
+    (is (= (group-of-three->word \0 \0 \6)
+           "không trăm linh sáu"))
+    (is (= (group-of-three->word \0 \4 \7)
+           "không trăm bốn mươi bảy"))
+    (is (= (group-of-three->word \0 \2 \0)
+           "không trăm hai mươi"))))
