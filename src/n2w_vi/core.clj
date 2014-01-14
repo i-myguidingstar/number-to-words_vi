@@ -5,30 +5,29 @@
           (map str '(không một hai ba bốn năm sáu bảy tám chín))))
 
 (defn group-of-two->word [y z]
-  (cond
-   (= \1 y)
-   (str "mười"
-        (when-not (= \0 z)
-          (str " " (digit->word z))))
+  (if (= \1 y)
+    (let [tail (if-not (= \0 z)
+                 (str " " (digit->word z)))]
+      (str "mười"
+           tail))
 
-   :default
-   (str (digit->word y) " mươi"
-        (when (not= \0 z)
-          (str " "
-               (cond
-                (and (= \1 z) (not (#{\0 \1} y)))
-                "mốt"
-                (and (= \4 z) (not (#{\0 \1} y)))
-                "tư"
-                (and (= \5 z) (not= \0 y))
-                "lăm"
-                :default
-                (digit->word z)))))))
+    (str (digit->word y) " mươi"
+         (when (not= \0 z)
+           (str " "
+                (cond
+                 (and (= \1 z) (not (contains? #{\0 \1} y)))
+                 "mốt"
+                 (and (= \4 z) (not (contains? #{\0 \1} y)))
+                 "tư"
+                 (and (= \5 z) (not= \0 y))
+                 "lăm"
+                 :default
+                 (digit->word z)))))))
 
 (defn group-of-three->word [x y z]
   (str
    (digit->word x)
-   (when-not (= \0 x y z) " trăm")
+   (if-not (= \0 x y z) " trăm")
    (cond
     (= \0 y z)
     ""
