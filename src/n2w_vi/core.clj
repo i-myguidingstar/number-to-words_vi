@@ -1,8 +1,11 @@
 (ns n2w-vi.core)
 
-(def digit->word
+(def digit->word-map
   (zipmap (map #(first (str %)) (range 10))
           (map str '(không một hai ba bốn năm sáu bảy tám chín))))
+
+(defn digit->word [z]
+  (get digit->word-map z))
 
 (defn group-of-two->word [y z]
   (if (= \1 y)
