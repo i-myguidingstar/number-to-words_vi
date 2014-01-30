@@ -1,4 +1,4 @@
-(defproject n2w-vi "0.1.0-SNAPSHOT"
+(defproject n2w-vi "0.1.0"
   :description "number to Vietnamese word conversion"
   :url "https://github.com/myguidingstar/number-to-words_vi"
   :license {:name "Eclipse Public License"
