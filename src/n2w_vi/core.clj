@@ -1,20 +1,20 @@
 (ns n2w-vi.core)
 
-(def digit->word-map
+(def digit->words-map
   (zipmap (map #(first (str %)) (range 10))
           (map str '(không một hai ba bốn năm sáu bảy tám chín))))
 
-(defn digit->word [z]
-  (get digit->word-map z))
+(defn digit->words [z]
+  (get digit->words-map z))
 
 (defn group-of-two->words [y z]
   (if (= \1 y)
     (let [tail (if-not (= \0 z)
-                 (str " " (digit->word z)))]
+                 (str " " (digit->words z)))]
       (str "mười"
            tail))
 
-    (str (digit->word y) " mươi"
+    (str (digit->words y) " mươi"
          (when (not= \0 z)
            (str " "
                 (cond
@@ -25,26 +25,26 @@
                  (and (= \5 z) (not= \0 y))
                  "lăm"
                  :default
-                 (digit->word z)))))))
+                 (digit->words z)))))))
 
-(defn group-of-three->word [x y z]
+(defn group-of-three->words [x y z]
   (str
-   (digit->word x)
+   (digit->words x)
    (if-not (= \0 x y z) " trăm")
    (cond
     (= \0 y z)
     ""
 
     (= \0 y)
-    (str " linh " (digit->word z))
+    (str " linh " (digit->words z))
 
     :default
     (str " " (group-of-two->words y z)))))
 
-(declare number->word-helper)
+(declare number->words*)
 
-(defn number->word [n]
-  (number->word-helper (seq (str n))))
+(defn number->words [n]
+  (number->words* (seq (str n))))
 
 (defn link-groups [digits level paster]
   (let [n-of-digits (count digits)
