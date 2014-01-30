@@ -64,25 +64,25 @@
     (is (= (group-of-two->words \2 \0)
            "hai mươi"))))
 
-(deftest group-of-three->word-tests
+(deftest group-of-three->words-tests
   (testing "testing numbers with three digits"
-    (is (= (group-of-three->word \3 \4 \7)
+    (is (= (group-of-three->words \3 \4 \7)
            "ba trăm bốn mươi bảy"))
-    (is (= (group-of-three->word \3 \1 \7)
+    (is (= (group-of-three->words \3 \1 \7)
            "ba trăm mười bảy"))
-    (is (= (group-of-three->word \3 \0 \0)
+    (is (= (group-of-three->words \3 \0 \0)
            "ba trăm"))
-    (is (= (group-of-three->word \3 \0 \7)
+    (is (= (group-of-three->words \3 \0 \7)
            "ba trăm linh bảy"))
-    (is (= (group-of-three->word \3 \1 \0)
+    (is (= (group-of-three->words \3 \1 \0)
            "ba trăm mười")))
 
   (testing "testing child-group numbers with less than two digits"
-    (is (= (group-of-three->word \0 \0 \0)
+    (is (= (group-of-three->words \0 \0 \0)
            "không"))
-    (is (= (group-of-three->word \0 \0 \6)
+    (is (= (group-of-three->words \0 \0 \6)
            "không trăm linh sáu"))
-    (is (= (group-of-three->word \0 \4 \7)
+    (is (= (group-of-three->words \0 \4 \7)
            "không trăm bốn mươi bảy"))
-    (is (= (group-of-three->word \0 \2 \0)
+    (is (= (group-of-three->words \0 \2 \0)
            "không trăm hai mươi"))))
