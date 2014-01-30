@@ -7,7 +7,7 @@
 (defn digit->word [z]
   (get digit->word-map z))
 
-(defn group-of-two->word [y z]
+(defn group-of-two->words [y z]
   (if (= \1 y)
     (let [tail (if-not (= \0 z)
                  (str " " (digit->word z)))]
@@ -39,7 +39,7 @@
     (str " linh " (digit->word z))
 
     :default
-    (str " " (group-of-two->word y z)))))
+    (str " " (group-of-two->words y z)))))
 
 (declare number->word-helper)
 
@@ -79,7 +79,7 @@
      (apply group-of-three->word digits)
 
      (= 2 n-of-digits)
-     (apply group-of-two->word digits)
+     (apply group-of-two->words digits)
 
      (= 1 n-of-digits)
      (apply digit->word digits))))
