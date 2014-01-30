@@ -76,10 +76,10 @@
      (link-groups digits 3 "nghìn")
 
      (= 3 n-of-digits)
-     (apply group-of-three->word digits)
+     (apply group-of-three->words digits)
 
      (= 2 n-of-digits)
      (apply group-of-two->words digits)
 
      (= 1 n-of-digits)
-     (apply digit->word digits))))
+     (apply digit->words digits))))
