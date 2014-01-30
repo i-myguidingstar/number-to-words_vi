@@ -37,18 +37,18 @@
                  (cons 6 (repeat 6 0))))
            "sáu triệu"))
 
-    (is (= (number->word-helper
+    (is (= (number->words*
             (map #(first (str %))
                  (cons 3 (repeat 3 0))))
            "ba nghìn"))
 
-    (is (= (number->word-helper
+    (is (= (number->words*
             (map #(first (str %))
                  (concat (cons 9 (repeat 8 0)) '(4))))
            (str "chín tỷ không triệu không nghìn"
                 " không trăm linh bốn")))
 
-    (is (= (number->word-helper
+    (is (= (number->words*
             (map #(first (str %))
                  '(1 0 3 6 0 6 7 2 0 8 1 3 1 9 4)))
            (str "một trăm linh ba nghìn"

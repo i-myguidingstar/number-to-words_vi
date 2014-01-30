@@ -46,7 +46,7 @@
 (defn number->words [n]
   (number->words* (seq (str n))))
 
-(defn link-groups [digits level paster]
+(defn link-groups [digits level paster seperator]
   (let [n-of-digits (count digits)
         remainder (rem n-of-digits level)
         digits-to-process (if (zero? remainder)
@@ -56,14 +56,14 @@
                          level))
         head (take digits-to-process digits)
         tail (drop digits-to-process digits)]
-    (str (number->word-helper head) " "
+    (str (number->words* head) " "
          paster
          (if (apply = (cons \0 tail))
            (when (< 0 repeated)
              (apply str " " (interpose " " (repeat repeated paster))))
-           (str " " (number->word-helper tail))))))
+           (str seperator " " (number->words* tail))))))
 
-(defn number->word-helper [digits]
+(defn number->words* [digits]
   (let [n-of-digits (count digits)]
     (cond
      (< 9 n-of-digits)
