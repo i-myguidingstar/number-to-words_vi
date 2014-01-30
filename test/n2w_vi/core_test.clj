@@ -2,9 +2,9 @@
   (:require [clojure.test :refer :all]
             [n2w-vi.core :refer :all]))
 
-(deftest number->word-helper-test
-  (testing "n->w-h"
-    (is (= (number->word-helper
+(deftest number->words*-test
+  (testing "n->w*"
+    (is (= (number->words*
             (map #(first (str %))
                  (drop 1 (take 28 (cycle (range 10))))))
            (str "một trăm hai mươi ba triệu"
@@ -17,22 +17,22 @@
                 " hai trăm ba mươi tư nghìn"
                 " năm trăm sáu mươi bảy")))
 
-    (is (= (number->word-helper
+    (is (= (number->words*
             (map #(first (str %))
                  (cons 9 (repeat 9 0))))
            "chín tỷ"))
 
-    (is (= (number->word-helper
+    (is (= (number->words*
             (map #(first (str %))
                  (cons 9 (repeat 18 0))))
            "chín tỷ tỷ"))
 
-    (is (= (number->word-helper
+    (is (= (number->words*
             (map #(first (str %))
                  (cons 9 (repeat 27 0))))
            "chín tỷ tỷ tỷ"))
 
-    (is (= (number->word-helper
+    (is (= (number->words*
             (map #(first (str %))
                  (cons 6 (repeat 6 0))))
            "sáu triệu"))
