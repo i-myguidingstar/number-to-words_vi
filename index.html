@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Number-to-words vi by myguidingstar</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Number-to-words vi</h1>
+        <h2>number to Vietnamese words conversion</h2>
+        <a href="https://github.com/myguidingstar/number-to-words_vi" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a name="number-to-words_vietnamese" class="anchor" href="#number-to-words_vietnamese"><span class="octicon octicon-link"></span></a>number-to-words_vietnamese</h1>
+
+<p>A Clojure library for number to Vietnamese words conversion.</p>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p><img src="https://clojars.org/n2w-vi/latest-version.svg" alt="Latest version"></p>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<div class="highlight highlight-clojure"><pre><span class="p">(</span><span class="nf">require</span> <span class="o">'</span><span class="p">[</span><span class="nv">n2w-vi.core</span> <span class="ss">:refer</span> <span class="p">[</span><span class="nv">number-&gt;words</span><span class="p">]])</span>
+
+<span class="c1">;; Light travels 299,793 kilometers per second.</span>
+<span class="c1">;; Distance from Sun to Pluto is said to be 5.5 light-hours, or in Vietnamese (kilometers):</span>
+<span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">distance-from-Sun-to-Pluto</span> <span class="c1">;; 5935901400</span>
+      <span class="p">(</span><span class="nf">bigint</span> <span class="p">(</span><span class="nb">* </span><span class="mi">299793</span> <span class="mf">5.5</span> <span class="mi">60</span> <span class="mi">60</span><span class="p">))]</span>
+  <span class="p">(</span><span class="nf">number-&gt;words</span> <span class="nv">distance-from-Sun-to-Pluto</span><span class="p">))</span>
+<span class="c1">;; =&gt; "năm tỷ chín trăm ba mươi lăm triệu chín trăm linh một nghìn bốn trăm"</span>
+</pre></div>
+
+<p>If the number is too long to be stored as a integer, you may want to use
+the function <code>number-&gt;words*</code> which receives a sequence of digits
+(of char type, eg \0, \1 etc) instead.</p>
+
+<div class="highlight highlight-clojure"><pre><span class="p">(</span><span class="nf">number-&gt;words*</span> <span class="p">[</span><span class="sc">\1</span> <span class="sc">\2</span> <span class="sc">\3</span><span class="p">])</span>
+<span class="c1">;; =&gt; "một trăm hai mươi ba"</span>
+</pre></div>
+
+<p>You may want to have commas as group separators.</p>
+
+<div class="highlight highlight-clojure"><pre><span class="p">(</span><span class="nf">number-&gt;words</span> <span class="mi">123456789</span> <span class="s">","</span><span class="p">)</span>
+<span class="c1">;; =&gt; "một trăm hai mươi ba triệu, bốn trăm năm mươi sáu nghìn bảy trăm tám mươi chín"</span>
+
+<span class="p">(</span><span class="nf">number-&gt;words*</span> <span class="p">[</span><span class="sc">\1</span> <span class="sc">\2</span> <span class="sc">\3</span> <span class="sc">\4</span> <span class="sc">\5</span> <span class="sc">\6</span> <span class="sc">\7</span> <span class="sc">\8</span> <span class="sc">\9</span><span class="p">]</span> <span class="s">","</span><span class="p">)</span>
+<span class="c1">;; =&gt; "một trăm hai mươi ba triệu, bốn trăm năm mươi sáu nghìn bảy trăm tám mươi chín"</span>
+</pre></div>
+
+<p>See provided unit tests for more usage.</p>
+
+<p>Enjoy!</p>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>Copyright © 2014 Hoang Minh Thang</p>
+
+<p>Distributed under the Eclipse Public License either version 1.0 or (at
+your option) any later version.</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/myguidingstar/number-to-words_vi/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/myguidingstar/number-to-words_vi/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/myguidingstar/number-to-words_vi"></a> is maintained by <a href="https://github.com/myguidingstar">myguidingstar</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
