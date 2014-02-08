@@ -43,8 +43,11 @@
 
 (declare number->words*)
 
-(defn number->words [n & [separator]]
-  (number->words* (seq (str n)) separator))
+(defn number->words
+  ([n]
+     (number->words* (seq (str n)) nil))
+  ([n separator]
+     (number->words* (seq (str n)) separator)))
 
 (defn link-groups [digits level paster separator]
   (let [n-of-digits (count digits)
