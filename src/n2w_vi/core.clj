@@ -66,23 +66,26 @@
              (apply str " " (interpose " " (repeat repeated paster))))
            (str separator " " (number->words* tail))))))
 
-(defn number->words* [digits & [separator]]
-  (let [n-of-digits (count digits)]
-    (cond
-     (< 9 n-of-digits)
-     (link-groups digits 9 "tỷ" separator)
+(defn number->words*
+  ([digits]
+     (number->words* digits nil))
+  ([digits separator]
+     (let [n-of-digits (count digits)]
+       (cond
+        (< 9 n-of-digits)
+        (link-groups digits 9 "tỷ" separator)
 
-     (< 6 n-of-digits)
-     (link-groups digits 6 "triệu" separator)
+        (< 6 n-of-digits)
+        (link-groups digits 6 "triệu" separator)
 
-     (< 3 n-of-digits)
-     (link-groups digits 3 "nghìn" separator)
+        (< 3 n-of-digits)
+        (link-groups digits 3 "nghìn" separator)
 
-     (= 3 n-of-digits)
-     (apply group-of-three->words digits)
+        (= 3 n-of-digits)
+        (apply group-of-three->words digits)
 
-     (= 2 n-of-digits)
-     (apply group-of-two->words digits)
+        (= 2 n-of-digits)
+        (apply group-of-two->words digits)
 
-     (= 1 n-of-digits)
-     (apply digit->words digits))))
+        (= 1 n-of-digits)
+        (apply digit->words digits)))))
